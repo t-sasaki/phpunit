@@ -287,7 +287,7 @@ class PHPUnit_Util_Log_JUnit extends PHPUnit_Util_Printer implements PHPUnit_Fra
     public function startTestSuite(PHPUnit_Framework_TestSuite $suite)
     {
         $testSuite = $this->document->createElement('testsuite');
-        $testSuite->setAttribute('name', $suite->getName());
+        $testSuite->setAttribute('name', PHPUnit_Util_String::convertToUtf8($suite->getName()));
 
         if (class_exists($suite->getName(), FALSE)) {
             try {
@@ -397,7 +397,7 @@ class PHPUnit_Util_Log_JUnit extends PHPUnit_Util_Printer implements PHPUnit_Fra
     {
         if (!$test instanceof PHPUnit_Framework_Warning) {
             $testCase = $this->document->createElement('testcase');
-            $testCase->setAttribute('name', $test->getName());
+            $testCase->setAttribute('name', PHPUnit_Util_String::convertToUtf8($test->getName()));
 
             if ($test instanceof PHPUnit_Framework_TestCase) {
                 $class      = new ReflectionClass($test);
